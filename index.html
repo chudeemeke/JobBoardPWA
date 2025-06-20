@@ -18,6 +18,24 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/JobBoardPWA/assets/icons/icon-16.png">
     <link rel="apple-touch-icon" sizes="180x180" href="/JobBoardPWA/assets/icons/icon-180.png">
     
+    <!-- iOS Specific Icons -->
+    <link rel="apple-touch-icon" href="/JobBoardPWA/icon-192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/JobBoardPWA/icon-192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/JobBoardPWA/icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/JobBoardPWA/icon-192.png">
+    
+    <!-- Fallback for iOS -->
+    <link rel="icon" type="image/png" href="/JobBoardPWA/icon-192.png">
+    
+    <!-- iOS Specific -->
+    <link rel="apple-touch-icon" href="/JobBoardPWA/icon-192.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/JobBoardPWA/icon-192.png">
+    <link rel="apple-touch-icon" sizes="167x167" href="/JobBoardPWA/icon-192.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/JobBoardPWA/icon-192.png">
+    
+    <!-- iOS Splash Screen (optional but helps with icon) -->
+    <link rel="apple-touch-startup-image" href="/JobBoardPWA/icon-512.png">
+    
     <!-- External Libraries -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
     
@@ -277,6 +295,9 @@
     <!-- Quick start config to prevent slow loading -->
     <script src="/JobBoardPWA/src/js/config/quickstart.js"></script>
     
+    <!-- Temporary debug helper -->
+    <script src="/JobBoardPWA/debug-helper.js"></script>
+    
     <script type="module">
         // Error boundary for initialization
         window.addEventListener('error', (event) => {
@@ -308,13 +329,13 @@
         });
 
         // Initialize app
-        import('./src/js/app.js').then(module => {
+        import('/JobBoardPWA/src/js/app.js').then(module => {
             // App will initialize itself
             window.app = module.app;
             window.appInitialized = true;
             
             // Initialize AI Assistant after app loads
-            import('./src/components/ai-assistant.js').then(aiModule => {
+            import('/JobBoardPWA/src/components/ai-assistant.js').then(aiModule => {
                 // AI Assistant will auto-initialize
                 window.aiAssistant = aiModule.aiAssistant;
             });
@@ -373,7 +394,7 @@
         // Register service worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register("/JobBoardPWA/sw.js').then(registration => {
+                navigator.serviceWorker.register("/JobBoardPWA/sw.js").then(registration => {
                     console.log('ServiceWorker registered:', registration);
                     
                     // Check for updates

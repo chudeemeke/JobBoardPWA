@@ -195,7 +195,7 @@ export class JobHunterApp {
                 enabled: true,
                 custom: false,
                 config: {
-                    gistId: process.env.COMMUNITY_GIST_ID || ''
+                    gistId: window.JOB_HUNTER_CONFIG?.communityGistId || ''
                 }
             }
         ];
@@ -250,7 +250,7 @@ export class JobHunterApp {
 
     async initializeUI() {
         // Dynamic UI initialization based on user preferences
-        const { UIManager } = await import('./ui/uiManager.js');
+        const { UIManager } = await import('./ui/UIManager.js');
         this.ui = new UIManager(this);
         await this.ui.initialize();
     }

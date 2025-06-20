@@ -31,12 +31,14 @@
   "shortcuts": [
     {
       "name": "View Applications",
-      "url": "/index.html#applications",
+      "short_name": "Applications",
+      "url": "/JobBoardPWA/index.html#applications",
       "description": "View your job applications"
     },
     {
       "name": "Optimize Resume",
-      "url": "/index.html#resume",
+      "short_name": "Resume",
+      "url": "/JobBoardPWA/index.html#resume",
       "description": "Optimize your resume for a job"
     }
   ],
