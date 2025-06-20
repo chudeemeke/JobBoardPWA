@@ -1,0 +1,6 @@
+{
+  "github": {
+    "token": "YOUR_GITHUB_TOKEN_HERE",
+    "username": "YOUR_GITHUB_USERNAME"
+  }
+}

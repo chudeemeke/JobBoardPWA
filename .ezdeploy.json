@@ -1,0 +1,14 @@
+{
+  "name": "JobBoardPWA",
+  "repository": "JobBoardPWA",
+  "type": "pwa",
+  "buildCommand": "",
+  "outputDirectory": ".",
+  "ignorePaths": [
+    "node_modules",
+    ".git",
+    ".env",
+    "*.log",
+    ".ezdeploy-auth.json"
+  ]
+}

@@ -92,7 +92,7 @@
             results.innerHTML = '';
             
             if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/sw.js')
+                navigator.serviceWorker.register("/JobBoardPWA/JobBoardPWA/sw.js')
                     .then(registration => {
                         addResult('✓ Service Worker registered');
                         
@@ -128,7 +128,7 @@
             });
             
             // Test manifest
-            fetch('/manifest.json')
+            fetch("/JobBoardPWA/JobBoardPWA/manifest.json')
                 .then(response => response.json())
                 .then(manifest => {
                     addResult('✓ Manifest.json loads correctly');

@@ -2,29 +2,32 @@
   "name": "Job Hunter - Application Tracker & Resume Optimizer",
   "short_name": "Job Hunter",
   "description": "Track job applications, optimize resumes, and generate cover letters",
-  "start_url": "/job-hunter-app/index.html",
+  "start_url": "/JobBoardPWA/JobBoardPWA/JobBoardPWA/JobBoardPWA/job-hunter-app/index.html",
   "display": "standalone",
   "theme_color": "#2563eb",
   "background_color": "#ffffff",
   "orientation": "any",
-  "scope": "/job-hunter-app/",
+  "scope": "/JobBoardPWA/",
   "lang": "en-US",
   "prefer_related_applications": false,
   "icons": [
     {
-      "src": "/job-hunter-app/icon-192.png",
+      "src": "/JobBoardPWA/JobBoardPWA/JobBoardPWA/JobBoardPWA/job-hunter-app/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "/job-hunter-app/icon-512.png",
+      "src": "/JobBoardPWA/JobBoardPWA/job-hunter-app/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
   ],
-  "categories": ["productivity", "business"],
+  "categories": [
+    "productivity",
+    "business"
+  ],
   "shortcuts": [
     {
       "name": "View Applications",

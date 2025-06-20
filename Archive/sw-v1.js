@@ -1,5 +1,5 @@
 // Service Worker for Job Hunter PWA
-const CACHE_NAME = 'job-hunter-v1';
+const CACHE_NAME = 'JobBoardPWA-v1';
 const urlsToCache = [
     '/',
     '/index.html',
