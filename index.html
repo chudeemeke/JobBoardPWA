@@ -8,15 +8,15 @@
     
     <!-- PWA Meta Tags -->
     <meta name="theme-color" content="#2563eb">
-    <link rel="manifest" href="/JobBoardPWA/JobBoardPWA/job-hunter-app/manifest.json">
+    <link rel="manifest" href="/JobBoardPWA/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="apple-mobile-web-app-title" content="Job Hunter">
     
     <!-- Icons -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/JobBoardPWA/JobBoardPWA/job-hunter-app/assets/icons/icon-32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/JobBoardPWA/JobBoardPWA/job-hunter-app/assets/icons/icon-16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/JobBoardPWA/JobBoardPWA/job-hunter-app/assets/icons/icon-180.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/JobBoardPWA/assets/icons/icon-32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/JobBoardPWA/assets/icons/icon-16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/JobBoardPWA/assets/icons/icon-180.png">
     
     <!-- External Libraries -->
     <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
@@ -274,6 +274,9 @@
     <div id="app" style="display: none;"></div>
 
     <!-- Module Scripts -->
+    <!-- Quick start config to prevent slow loading -->
+    <script src="/JobBoardPWA/src/js/config/quickstart.js"></script>
+    
     <script type="module">
         // Error boundary for initialization
         window.addEventListener('error', (event) => {
@@ -370,7 +373,7 @@
         // Register service worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register("/JobBoardPWA/JobBoardPWA/job-hunter-app/sw.js').then(registration => {
+                navigator.serviceWorker.register("/JobBoardPWA/sw.js').then(registration => {
                     console.log('ServiceWorker registered:', registration);
                     
                     // Check for updates

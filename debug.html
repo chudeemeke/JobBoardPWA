@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JobBoardPWA Debug</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <h1>JobBoardPWA Debug Console</h1>
+    <pre id="debug"></pre>
+    
+    <script>
+        const debug = document.getElementById('debug');
+        const log = (msg) => {
+            const timestamp = new Date().toLocaleTimeString();
+            debug.textContent += `[${timestamp}] ${msg}\n`;
+            console.log(msg);
+        };
+
+        log('Starting debug...');
+        
+        // Check if service worker is causing issues
+        if ('serviceWorker' in navigator) {
+            log('Checking service worker...');
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                log(`Found ${registrations.length} service workers`);
+                registrations.forEach(reg => {
+                    log(`Service worker: ${reg.scope}`);
+                });
+            });
+        }
+
+        // Check IndexedDB
+        log('Checking IndexedDB...');
+        const dbReq = indexedDB.open('JobHunterPro');
+        dbReq.onsuccess = () => {
+            log('✅ IndexedDB opened successfully');
+            dbReq.result.close();
+        };
+        dbReq.onerror = (e) => {
+            log('❌ IndexedDB error: ' + e.target.error);
+        };
+
+        // Check for blocking requests
+        log('Monitoring network requests...');
+        const observer = new PerformanceObserver((list) => {
+            for (const entry of list.getEntries()) {
+                if (entry.duration > 1000) {
+                    log(`⚠️ Slow request: ${entry.name} took ${Math.round(entry.duration)}ms`);
+                }
+            }
+        });
+        observer.observe({ entryTypes: ['resource'] });
+
+        // Load the actual app
+        setTimeout(() => {
+            log('Loading app.js...');
+            import('/JobBoardPWA/src/js/app.js')
+                .then(() => log('✅ App loaded'))
+                .catch(err => log('❌ App load error: ' + err.message));
+        }, 1000);
+
+        // Monitor for errors
+        window.addEventListener('error', (e) => {
+            log('❌ Error: ' + e.message + ' at ' + e.filename + ':' + e.lineno);
+        });
+
+        window.addEventListener('unhandledrejection', (e) => {
+            log('❌ Unhandled promise rejection: ' + e.reason);
+        });
+
+        // Check if stuck on specific operations
+        setTimeout(() => {
+            log('⏰ 10 second check - app should be loaded by now');
+        }, 10000);
+
+        setTimeout(() => {
+            log('⏰ 30 second check - definitely stuck if still loading');
+        }, 30000);
+    </script>
+</body>
+</html>

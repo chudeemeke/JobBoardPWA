@@ -1,7 +1,8 @@
 // Core Application Architecture - Production Ready
 // Security and UX at the foundation, not as features
 
-import Dexie from 'https://unpkg.com/dexie@latest/dist/dexie.mjs';
+// Use specific Dexie version for faster loading
+import Dexie from 'https://cdn.jsdelivr.net/npm/dexie@3.2.4/dist/dexie.mjs';
 
 // Master Database Schema
 export const db = new Dexie('JobHunterPro');
@@ -127,6 +128,9 @@ export class JobHunterApp {
     }
 
     async runFirstTimeSetup() {
+        // Skip job board sync if config says so
+        const skipSync = window.JOB_HUNTER_CONFIG?.skipInitialSync;
+        
         // Create default admin user
         const adminUser = await this.services.user.createUser({
             email: 'admin@jobhunter.local',
@@ -146,6 +150,12 @@ export class JobHunterApp {
             value: true,
             updated: new Date().toISOString()
         });
+        
+        // Don't sync on first run if config says so
+        if (!skipSync) {
+            // This was likely causing the 3+ minute delay
+            // await this.services.jobBoard.syncJobs();
+        }
     }
 
     async initializeDefaultJobBoards() {

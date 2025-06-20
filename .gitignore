@@ -13,3 +13,16 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# EZ-Deploy sensitive files (contains tokens)
+.ezdeploy-history.json
+.ezdeploy-auth.json
+.ezdeploy-config.json
+
+# Backup files
+*-backup-*
+*.backup
+
+# Local environment
+.env
+.env.local
